@@ -3,14 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building'
+                echo 'packaging app'
+                sh "ls"
+                sh "pwd"
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
+        
         stage('Deploy') {
             steps {
                 echo 'Deploying'
