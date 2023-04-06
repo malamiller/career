@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         SSH_CRED = credentials('us-east-key')
+        def CONNECT = 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-52-91-76-233.compute-1.amazonaws.com'
     }
     stages {
         
@@ -12,7 +13,7 @@ pipeline {
                 sh "pwd"
                 sh 'echo $SSH_CRED'
                 sshagent(['us-east-key']) {
-                    sh 'ssh ubuntu@ec2-52-91-76-233.compute-1.amazonaws.com "curl ifconfig.io"'
+                    sh '$CONNECT "curl ifconfig.io"'
                 }
             }
         }
