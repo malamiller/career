@@ -1,9 +1,10 @@
 pipeline {
     agent any
+    environment {
+        SSH_CRED = credentials('us-east-key')
+    }
     stages {
-        environment {
-            SSH_CRED = credentials('us-east-key')
-        }
+        
         stage('Build') {
             steps {
                 echo 'packaging app'
