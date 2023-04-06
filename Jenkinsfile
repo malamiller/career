@@ -10,7 +10,10 @@ pipeline {
                 echo 'packaging app'
                 sh "ls"
                 sh "pwd"
-                sh "echo $SSH_CRED"
+                sh 'echo $SSH_CRED'
+                sshagent(['us-east-key']) {
+                    sh 'ssh ubuntu@ec2-52-91-76-233.compute-1.amazonaws.com "curl ifconfig.io"'
+                }
             }
         }
         
