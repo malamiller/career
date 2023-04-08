@@ -45,7 +45,7 @@ if(isset($_SESSION['c_user_name'])){$user = $_SESSION['c_user_name'];}else{$user
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav" navbar-left>
-                <li><a href="index.php" id=""><i class="fa fa-home" ></i> Home </a></li>
+                <li><a href="index.php" id=""><i class="fa fa-home" ></i> Landing </a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -62,10 +62,10 @@ if(isset($_SESSION['c_user_name'])){$user = $_SESSION['c_user_name'];}else{$user
                     <a href="walkin.php" id=""><i class="fa fa-calendar"></i> Walk-in </a>
                 </li>
                 <li>
-                    <a href="topjobs.php" id=""><i class="fa fa-list"></i> Job List </a>
+                    <a href="topjobs.php" id=""><i class="fa fa-list"></i> Available Jobs </a>
                 </li>
                 <li>
-                    <a href="search.php" id=""><i class="fa fa-search"></i> Search </a>
+                    <a href="search.php" id=""><i class="fa fa-search"></i> Find Jobs </a>
                 </li>
 
                 <?php
