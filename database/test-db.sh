@@ -1,7 +1,9 @@
-if [ sudo !mysql -e 'use career_search']
+$DBNAME="career_search"
+DBEXISTS=$(mysql --batch --skip-column-names -e "SHOW DATABASES LIKE '"$DBNAME"';" | grep "$DBNAME" > /dev/null; echo "$?")
+if [ $DBEXISTS -eq 0 ]
 then
-    echo "database does not exist"
-    sudo mysql < career_search.sql
+    echo "A database with the name $DBNAME already exists. exiting"
 else
-    echo "database already exist"
+    echo "no db, create"
+    sudo mysql < career_search.sql
 fi
