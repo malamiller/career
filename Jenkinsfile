@@ -24,7 +24,7 @@ pipeline {
                     sh 'scp -i $SSH_CRED /var/lib/jenkins/workspace/webapp.zip ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com:/home/ubuntu'
                     sh '$CONNECT "curl ifconfig.io"'
                     sh '$CONNECT "sudo apt install zip -y"'
-                    sh '$CONNECT "zip -d /home/ubuntu/webapp.zip /home/ubuntu/app"'
+                    sh '$CONNECT "unzip -d /home/ubuntu/app /home/ubuntu/webapp.zip"'
                     sh '$CONNECT "cp -r /home/ubuntu/app/* /var/www/html/"'
                 }
             }
