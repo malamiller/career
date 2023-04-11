@@ -11,7 +11,7 @@ pipeline {
                 echo 'packaging app'
                 sh "ls"
                 sh "pwd"
-                sh 'zip -r /var/lib/jenkins/workspace/webapp.zip  /var/lib/jenkins/workspace/web-app'
+                sh 'zip -r /var/lib/jenkins/workspace/webapp.zip'
                 sh 'echo $SSH_CRED'
                 
             }
