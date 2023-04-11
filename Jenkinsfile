@@ -23,8 +23,9 @@ pipeline {
                 sshagent(['web-server-key']) {
                     sh 'scp -i $SSH_CRED /var/lib/jenkins/workspace/webapp.zip ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com:/home/ubuntu'
                     sh '$CONNECT "curl ifconfig.io"'
-                    sh '$CONNECT "sudo apt install zip"'
-                    sh '$CONNECT "zip -d /home/ubuntu /home/ubuntu/webapp.zip"'
+                    sh '$CONNECT "sudo apt install zip -y"'
+                    sh '$CONNECT "zip -d /home/ubuntu/app /home/ubuntu/webapp.zip"'
+                    sh '$CONNECT "cp -r /home/ubuntu/app/* /var/www/html/"'
                 }
             }
         }
