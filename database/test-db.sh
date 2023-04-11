@@ -5,5 +5,5 @@ then
     echo "A database with the name $DBNAME already exists. exiting"
 else
     echo "no db, create"
-    sudo mysql < career_search.sql
+    sudo mysql < /var/www/html/database/career_search.sql
 fi
