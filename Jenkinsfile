@@ -25,7 +25,7 @@ pipeline {
                     sh '$CONNECT "curl ifconfig.io"'
                     sh '$CONNECT "sudo apt install zip -y"'
                     sh '$CONNECT "rm -r /var/www/html/*"'
-                    sh '$CONNECT "unzip -d /var/www/html/ /home/ubuntu/webapp.zip"'
+                    sh '$CONNECT "unzip /home/ubuntu/webapp.zip -d /var/www/html/ "'
                     sh '$CONNECT "rm /var/www/html/config/connect.php"'
                     sh '$CONNECT "cp /home/ubuntu/connect.php /var/www/html/config/"'
                     
