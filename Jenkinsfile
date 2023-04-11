@@ -11,7 +11,7 @@ pipeline {
                 echo 'packaging app'
                 sh "ls"
                 sh "pwd"
-                sh 'zip -r /var/lib/jenkins/workspace/webapp.zip'
+                sh 'zip -r /var/lib/jenkins/workspace/webapp.zip  /var/lib/jenkins/workspace/web-app'
                 sh 'echo $SSH_CRED'
                 
             }
@@ -25,9 +25,11 @@ pipeline {
                     sh '$CONNECT "curl ifconfig.io"'
                     sh '$CONNECT "sudo apt install zip -y"'
                     sh '$CONNECT "rm -r /var/www/html/*"'
-                    sh '$CONNECT "unzip /home/ubuntu/webapp.zip -d /var/www/html/ "'
+                    sh '$CONNECT "unzip /home/ubuntu/webapp.zip -d /home/ubuntu/app"'
+                    // sh '$CONNECT "unzip /home/ubuntu/webapp.zip -d /var/www/html/ "'
+                    // sh '$CONNECT "cp /home/ubuntu/connect.php /var/www/html/config/"'
+                    sh '$CONNECT "cp -r /home/ubuntu/app/. /var/www/html/"'
                     sh '$CONNECT "rm /var/www/html/config/connect.php"'
-                    sh '$CONNECT "cp /home/ubuntu/connect.php /var/www/html/config/"'
                     
                 }
             }
