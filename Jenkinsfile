@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         SSH_CRED = credentials('web-server-key')
-        def CONNECT = 'ssh -o StrictHostKeyChecking=no ubuntu@54.174.143.215.compute-1.amazonaws.com'
+        def CONNECT = 'ssh -o StrictHostKeyChecking=no ubuntu@54.174.143.215'
     }
     stages {
         
@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
-                sh 'ssh -tt -i $SSH_CRED -o StrictHostKeyChecking=no ubuntu@54.174.143.215.compute-1.amazonaws.com'
+                sh 'ssh -tt -i $SSH_CRED -o StrictHostKeyChecking=no ubuntu@54.174.143.215'
                 sshagent(['web-server-key']) {
                     sh '$CONNECT "curl ifconfig.io"'
                 }
