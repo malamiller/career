@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'packaging app'
-                sh "ls"
+                sh "ls -la"
                 sh "pwd"
                 
             }
