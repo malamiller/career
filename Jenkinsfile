@@ -2,15 +2,16 @@ pipeline {
     agent any
     environment {
         SSH_CRED = credentials('web-server-key')
-        def CONNECT = 'ssh ubuntu@54.174.143.215'
+        def CONNECT = 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com'
     }
     stages {
         
         stage('Build') {
             steps {
                 echo 'packaging app'
-                sh "ls -la"
+                sh "ls"
                 sh "pwd"
+                sh 'echo $SSH_CRED'
                 
             }
         }
