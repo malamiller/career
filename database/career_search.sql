@@ -7,6 +7,11 @@
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
+CREATE DATABASE IF NOT EXISTS career_search;
+
+use career_search;
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
