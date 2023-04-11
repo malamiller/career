@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         SSH_CRED = credentials('web-server-key')
-        def CONNECT = 'ssh -o ubuntu@54.174.143.215'
+        def CONNECT = 'ssh ubuntu@54.174.143.215'
     }
     stages {
         
