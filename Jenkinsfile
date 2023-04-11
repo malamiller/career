@@ -29,5 +29,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Clean-Up') {
+            steps {
+                echo 'Remove existing files'
+                sshagent(['web-server-key']) {
+                    sh '$CONNECT "sudo rm -r /home/ubuntu/app"'
+                    sh '$CONNECT "sudo rm /home/ubuntu/webapp.zip"'
+                }
+            }
+        }
     }
 }
