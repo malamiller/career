@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Deploying'
                 sshagent(['web-server-key']) {
-                    sh 'scp -i $SSH_CRED /var/lib/jenkins/workspace/webapp.zip ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com /home/ubuntu'
+                    sh 'scp -i $SSH_CRED /var/lib/jenkins/workspace/webapp.zip ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com:/home/ubuntu'
                     sh '$CONNECT "curl ifconfig.io"'
                     sh '$CONNECT "sudo apt install zip"'
                     sh '$CONNECT "zip -d /home/ubuntu /home/ubuntu/webapp.zip"'
