@@ -18,7 +18,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
-                sh 'ssh -i $SSH_CRED ubuntu@54.174.143.215'
                 sshagent(['web-server-key']) {
                     sh '$CONNECT "curl ifconfig.io"'
                 }
