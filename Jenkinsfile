@@ -18,7 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
-                sh 'ssh -i $SSH_CRED -o StrictHostKeyChecking=no ubuntu@ec2-54-174-143-215.compute-1.amazonaws.com'
+                sh 'ssh -tt -i $SSH_CRED -o StrictHostKeyChecking=no ubuntu@ec2-54-174-143-215.compute-1.amazonaws.com'
                 sshagent(['web-server-key']) {
                     sh '$CONNECT "curl ifconfig.io"'
                 }
