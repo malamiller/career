@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        SSH_CRED = credentials('us-east-key')
-        def CONNECT = 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-52-91-76-233.compute-1.amazonaws.com'
+        SSH_CRED = credentials('web-server-key')
+        def CONNECT = 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-174-143-215.compute-1.amazonaws.com'
     }
     stages {
         
@@ -11,16 +11,17 @@ pipeline {
                 echo 'packaging app'
                 sh "ls"
                 sh "pwd"
-                sh 'echo $SSH_CRED'
-                sshagent(['us-east-key']) {
-                    sh '$CONNECT "curl ifconfig.io"'
-                }
+                
             }
         }
         
         stage('Deploy') {
             steps {
                 echo 'Deploying'
+                sh 'echo $SSH_CRED'
+                sshagent(['web-server-key']) {
+                    sh '$CONNECT "curl ifconfig.io"'
+                }
             }
         }
     }
