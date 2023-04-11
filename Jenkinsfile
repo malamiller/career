@@ -24,8 +24,11 @@ pipeline {
                     sh 'scp -i $SSH_CRED /var/lib/jenkins/workspace/webapp.zip ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com:/home/ubuntu'
                     sh '$CONNECT "curl ifconfig.io"'
                     sh '$CONNECT "sudo apt install zip -y"'
-                    sh '$CONNECT "unzip -d /home/ubuntu/app /home/ubuntu/webapp.zip"'
-                    sh '$CONNECT "cp -r /home/ubuntu/app/* /var/www/html/"'
+                    sh '$CONNECT "rm -r /var/www/html/*"'
+                    sh '$CONNECT "unzip -d /var/www/html/ /home/ubuntu/webapp.zip"'
+                    sh '$CONNECT "rm /var/www/html/config/connect.php"'
+                    sh '$CONNECT "cp /home/ubuntu/connect.php /var/www/html/config/"'
+                    
                 }
             }
         }
@@ -34,7 +37,6 @@ pipeline {
             steps {
                 echo 'Remove existing files'
                 sshagent(['web-server-key']) {
-                    sh '$CONNECT "sudo rm -r /home/ubuntu/app"'
                     sh '$CONNECT "sudo rm /home/ubuntu/webapp.zip"'
                 }
             }
