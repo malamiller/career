@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo 'Deploying'
                 sshagent(['web-server-key']) {
-                    sh 'scp -i $SSH_CRED webapp.zip ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com:/home/ubuntu'
+                    sh 'scp -o StrictHostKeyChecking=no -i $SSH_CRED webapp.zip ubuntu@ec2-3-91-17-246.compute-1.amazonaws.com:/home/ubuntu'
                     sh '$CONNECT "curl ifconfig.io"'
                     sh '$CONNECT "sudo apt install zip -y"'
                     sh '$CONNECT "rm -rf /var/www/html/"'
