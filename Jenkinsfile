@@ -15,34 +15,11 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
+        stage('package') {
             steps {
-                echo 'Deploying'
-                sshagent(['deploy-key']) {
-                    sh 'scp -o StrictHostKeyChecking=no -i $SSH_CRED webapp.zip ubuntu@ec2-44-203-119-144.compute-1.amazonaws.com:/home/ubuntu'
-                    sh '$CONNECT "curl ifconfig.io"'
-                    sh '$CONNECT "sudo apt install zip -y"'
-                    sh '$CONNECT "rm -rf /var/www/html/"'
-                    sh '$CONNECT "mkdir /var/www/html/"'
-                    // sh '$CONNECT "unzip /home/ubuntu/webapp.zip -d /home/ubuntu/app"'
-                    sh '$CONNECT "unzip webapp.zip -d /var/www/html/"'
-                    sh '$CONNECT "rm /var/www/html/config/connect.php"'
-                    sh '$CONNECT "cp /home/ubuntu/connect.php /var/www/html/config/"'
-                    sh '$CONNECT "sudo sh /var/www/html/database/test-db.sh"'
-                    
-                    // sh '$CONNECT "cp -r /home/ubuntu/app/. /var/www/html/"'
-                    
-                }
+                echo 'upload artifcats'
+                sh "curl -v -u admin:admin123 --upload-file webapp.zip http://44.203.195.37:8081/repository/career-repo/webapp.zip"
             }
-        }
-
-        stage('Clean-Up') {
-            steps {
-                echo 'Remove existing files'
-                sshagent(['deploy-key']) {
-                    sh '$CONNECT "sudo rm /home/ubuntu/webapp.zip"'
-                }
-            }
-        }
-    }
+        }  
+      }
 }
